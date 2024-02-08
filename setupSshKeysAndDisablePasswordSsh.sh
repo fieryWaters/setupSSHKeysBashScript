@@ -31,28 +31,30 @@ send_public_key() {
     cat "$HOME/.ssh/$keyName.pub" | ssh "$remoteUser@$remoteIpAddress" "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 }
 
-# Function to prompt user for remote port
-prompt_remote_port() {
-    echo "What port would you configure the remote server to use?"
-    read -r remotePort
-    echo "Did you type it right? [yes, y] to continue "
-    read -r verify
-    while [[ $verify != 'yes' ]] && [[ $verify != 'y' ]]; do
-        read -r -p "Did you type it right? [yes, y] to continue " verify
-    done
-}
+# # Function to prompt user for remote port
+# prompt_remote_port() {
+#     echo "What port would you configure the remote server to use?"
+#     read -r remotePort
+#     echo "Did you type it right? [yes, y] to continue "
+#     read -r verify
+#     while [[ $verify != 'yes' ]] && [[ $verify != 'y' ]]; do
+#         read -r -p "Did you type it right? [yes, y] to continue " verify
+#     done
+# }
 
 # Function to configure remote server
 configure_remote_server() {
-    echo "Disabling password login and setting remote port to $remotePort"
+    echo "Disabling password login"
     
-    # Disable password login
-    ssh -t "$remoteUser@$remoteIpAddress" "sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config"
+    if prompt_disable_password_login; then
+        echo "Disabling password login..."
+        ssh -t "$remoteUser@$remoteIpAddress" "sudo sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config"
+    else
+        echo "Password login not disabled."
+    fi
     
-    # Set remote port
-    ssh -t "$remoteUser@$remoteIpAddress" "sed -i 's/^#Port [0-9]*/Port $remotePort/' /etc/ssh/sshd_config"
     
-    # Restart SSH service
+    echo "Restarting SSH service..."
     ssh -t "$remoteUser@$remoteIpAddress" "sudo systemctl restart sshd"
 }
 
@@ -63,7 +65,6 @@ setup_local_config_file() {
         echo ""
         echo "Host $keyName $remoteIpAddress"
         echo -e "\tHostName $remoteIpAddress"
-        echo -e "\tPort $remotePort"
         echo -e "\tIdentityFile $identityFileLocation"
         echo -e "\tUser $remoteUser"
         echo ""
@@ -89,7 +90,6 @@ prompt_create_stronger_password() {
 main() {
     generate_ssh_key
     send_public_key
-    prompt_remote_port
     configure_remote_server
     setup_local_config_file
     test_ssh_connection
@@ -98,4 +98,3 @@ main() {
 
 # Execute the main function
 main
-
