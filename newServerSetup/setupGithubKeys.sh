@@ -16,9 +16,8 @@ read -p "Enter your GitHub username: " github_username
 # Prompt for GitHub email
 read -p "Enter your GitHub email: " github_email
 
-# Prompt for SSH key filename (default is id_rsa)
-read -p "Enter filename for SSH key (default is id_rsa): " key_filename
-key_filename=${key_filename:-id_rsa}
+#key filename MUST be id_rsa for github!
+key_filename=id_rsa
 
 # Step 1: Generate SSH key pair
 echo "Generating SSH key pair..."

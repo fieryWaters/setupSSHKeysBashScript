@@ -90,7 +90,7 @@ prompt_create_stronger_password() {
 main() {
     generate_ssh_key
     send_public_key
-    configure_remote_server
+    #configure_remote_server
     setup_local_config_file
     test_ssh_connection
     prompt_create_stronger_password
