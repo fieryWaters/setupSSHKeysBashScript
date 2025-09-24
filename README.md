@@ -2,10 +2,18 @@
 
 A collection of bash scripts for streamlined SSH key management and server configuration. The primary scripts work on both macOS and Linux, making it easy to set up secure SSH connections between your local machine and remote servers.
 
+## Getting Started
+
+```bash
+git clone https://github.com/fieryWaters/setupSSHKeysBashScript.git
+cd setupSSHKeysBashScript
+```
+
 ## Main Scripts
 
 ### setup_ssh_keys_on_remote.sh
-**Platform:** macOS/Linux → Ubuntu server
+**Runs on:** macOS/Linux/WSL
+**Target:** Any SSH server
 
 The streamlined script for setting up SSH key authentication. This script:
 - Generates an SSH key pair locally (stored in ~/.ssh/)
@@ -26,7 +34,7 @@ You'll be prompted for:
 After setup, you can connect using: `ssh [keyname]`
 
 ### newServerSetup/setupGithubKeys.sh
-**Platform:** macOS/Linux
+**Runs on:** macOS/Linux/WSL
 
 Automates GitHub SSH key setup for developers:
 - Generates a 4096-bit RSA key specifically for GitHub (uses `id_rsa` filename)
@@ -38,35 +46,17 @@ Automates GitHub SSH key setup for developers:
 ./newServerSetup/setupGithubKeys.sh
 ```
 
-## Additional Utilities
+## Ubuntu Server Scripts
 
-### Password Authentication Management
-- `enablePasswordLogin.sh` - Re-enables password authentication on Ubuntu servers
-- `disablePasswordLogin.sh` - Disables password authentication for enhanced security (requires sudo)
+### Password Authentication
+- `enablePasswordLogin.sh` - Re-enables password authentication (requires sudo)
+- `disablePasswordLogin.sh` - Disables password authentication (requires sudo)
 
-### Server Utilities (Ubuntu/Debian)
+### Server Management
 Located in `newServerSetup/`:
-- `enableSshServer.sh` / `disableSshServer.sh` - Manage SSH server service
-- `enableLidCloseSleep.sh` / `disableLidCloseSleep.sh` - Control laptop lid behavior (useful for laptop servers)
+- `enableSshServer.sh` / `disableSshServer.sh` - Start/stop SSH server and configure autostart
+- `enableLidCloseSleep.sh` / `disableLidCloseSleep.sh` - Control laptop lid suspend behavior
 
-## Requirements
-
-- **Local machine:** macOS or Linux with bash and ssh-keygen
-- **Remote servers:** Ubuntu/Debian with SSH server installed
-
-## Quick Start
-
-1. Clone this repository:
-```bash
-git clone https://github.com/fieryWaters/setupSSHKeysBashScript.git
-cd setupSSHKeysBashScript
-```
-
-2. Run the appropriate script for your needs (scripts are already executable)
-
-## Security Notes
-
-- After setting up SSH keys, consider disabling password authentication on your server using `disablePasswordLogin.sh`
 
 ## Contributing
 
