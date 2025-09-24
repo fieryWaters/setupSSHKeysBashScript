@@ -17,7 +17,7 @@ send_public_key() {
     echo "Enter the IP Address for the remote host"
     read -r remoteIpAddress
 
-    qcat "$HOME/.ssh/$keyName.pub" | ssh "$remoteUser@$remoteIpAddress" "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+    cat "$HOME/.ssh/$keyName.pub" | ssh "$remoteUser@$remoteIpAddress" "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 }
 
 # Function to set up local config file
