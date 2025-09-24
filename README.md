@@ -33,7 +33,7 @@ You'll be prompted for:
 
 After setup, you can connect using: `ssh [keyname]`
 
-### setupGithubKeys.sh
+### setup_github_keys.sh
 **Runs on:** macOS/Linux/WSL
 
 Automates GitHub SSH key setup for developers:
@@ -43,7 +43,7 @@ Automates GitHub SSH key setup for developers:
 
 **Usage:**
 ```bash
-./setupGithubKeys.sh
+./setup_github_keys.sh
 ```
 
 ## Server Utilities
@@ -51,11 +51,11 @@ Automates GitHub SSH key setup for developers:
 All utilities in `server-utils/` directory require sudo and are designed for Ubuntu/Debian systems:
 
 ### SSH Configuration
-- `enablePasswordLogin.sh` / `disablePasswordLogin.sh` - Toggle password authentication
-- `enableSshServer.sh` / `disableSshServer.sh` - Manage SSH server service
+- `enable_password_login.sh` / `disable_password_login.sh` - Toggle password authentication
+- `enable_ssh_server.sh` / `disable_ssh_server.sh` - Manage SSH server service
 
 ### Hardware Settings
-- `enableLidCloseSleep.sh` / `disableLidCloseSleep.sh` - Control laptop lid suspend behavior
+- `enable_lid_close_sleep.sh` / `disable_lid_close_sleep.sh` - Control laptop lid suspend behavior
 
 
 ## Contributing
