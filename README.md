@@ -1,6 +1,6 @@
 # SSH Setup Scripts
 
-A collection of bash scripts for streamlined SSH key management and server configuration. The primary scripts work on both macOS and Linux, making it easy to set up secure SSH connections between your local machine and remote servers.
+Scripts for setting up passwordless SSH authentication to remote servers. Includes a dedicated script for GitHub SSH key setup and git configuration. Also provides utilities for managing SSH server settings on Ubuntu.
 
 ## Getting Started
 
